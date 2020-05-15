@@ -80,6 +80,10 @@ object ChromeTest : BuildType({
       scriptContent = "npm run test-chrome"
     }
   }
+
+  dependencies{
+    snapshot(Build){}
+  }
 })
 
 object FirefoxTest : BuildType({
@@ -100,6 +104,10 @@ object FirefoxTest : BuildType({
       name = "FirefoxTest"
       scriptContent = "npm run test-firefox"
     }
+  }
+
+  dependencies{
+    snapshot(Build){}
   }
 })
 
