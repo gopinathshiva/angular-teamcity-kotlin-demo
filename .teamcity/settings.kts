@@ -35,6 +35,7 @@ project {
 
 object Build : BuildType({
     name = "Build"
+    description = "Build description added here"
 
     vcs {
         root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
