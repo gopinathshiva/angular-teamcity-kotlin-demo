@@ -34,6 +34,15 @@ project {
     buildType(Build)
     buildType(ChromeTest)
     buildType(FirefoxTest)
+
+//    since 2019.2 versions
+    sequential {
+      buildType(Build)
+      parallel {
+        buildType(ChromeTest)
+        buildType(FirefoxTest)
+      }
+    }
 }
 
 object Build : BuildType({
@@ -56,7 +65,7 @@ object Build : BuildType({
       }
       script {
         name = "Build"
-        scriptContent = "npm run build"
+        scriptContent = "echo build successful"
       }
     }
 })
@@ -77,12 +86,8 @@ object ChromeTest : BuildType({
   steps {
     script {
       name = "ChromeTest"
-      scriptContent = "npm run test-chrome"
+      scriptContent = "echo test successful"
     }
-  }
-
-  dependencies{
-    snapshot(Build){}
   }
 })
 
@@ -102,12 +107,8 @@ object FirefoxTest : BuildType({
   steps {
     script {
       name = "FirefoxTest"
-      scriptContent = "npm run test-firefox"
+      scriptContent = "echo test successful"
     }
-  }
-
-  dependencies{
-    snapshot(Build){}
   }
 })
 
