@@ -59,13 +59,13 @@ object Build : BuildType({
     }
 
     steps {
-      script {
-        name = "Install"
-        scriptContent = "npm install"
-      }
+//      script {
+//        name = "Install"
+//        scriptContent = "npm install"
+//      }
       script {
         name = "Build"
-        scriptContent = "echo build successful"
+        scriptContent = "exit 1"
       }
     }
 })
