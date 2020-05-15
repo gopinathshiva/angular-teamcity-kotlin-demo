@@ -48,3 +48,4 @@ Thumbs.db
 /deploy
 
 /.teamcity/target
+/.teamcity/AngularTeamcityKotlinDemo_dsl.iml

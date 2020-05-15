@@ -32,10 +32,12 @@ project {
     vcsRoot(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
 
     buildType(Build)
+    buildType(ChromeTest)
+    buildType(FirefoxTest)
 }
 
 object Build : BuildType({
-    name = "Build"
+    name= "Build"
     description = "Build description added here"
 
     vcs {
@@ -57,6 +59,48 @@ object Build : BuildType({
         scriptContent = "npm run build"
       }
     }
+})
+
+object ChromeTest : BuildType({
+  name= "ChromeTest"
+  description = "ChromeTest"
+
+  vcs {
+    root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
+  }
+
+  triggers {
+    vcs {
+    }
+  }
+
+  steps {
+    script {
+      name = "ChromeTest"
+      scriptContent = "npm run test-chrome"
+    }
+  }
+})
+
+object FirefoxTest : BuildType({
+  name= "FirefoxTest"
+  description = "FirefoxTest"
+
+  vcs {
+    root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
+  }
+
+  triggers {
+    vcs {
+    }
+  }
+
+  steps {
+    script {
+      name = "FirefoxTest"
+      scriptContent = "npm run test-firefox"
+    }
+  }
 })
 
 object HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster : GitVcsRoot({
