@@ -38,7 +38,7 @@ project {
 //    since 2019.2 versions
     sequential {
       buildType(Build)
-      parallel {
+      parallel(options = {onDependencyFailure = FailureAction.CANCEL}) {
         buildType(ChromeTest)
         buildType(FirefoxTest)
       }
