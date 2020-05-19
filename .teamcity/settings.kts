@@ -34,6 +34,7 @@ project {
     buildType(Build)
     buildType(ChromeTest)
     buildType(FirefoxTest)
+    buildType(Something1)
 
 //    since 2019.2 versions
     sequential {
@@ -42,6 +43,7 @@ project {
         buildType(ChromeTest)
         buildType(FirefoxTest)
       }
+      buildType(Something1)
     }
 }
 
@@ -51,11 +53,6 @@ object Build : BuildType({
 
     vcs {
         root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
-    }
-
-    triggers {
-        vcs {
-        }
     }
 
     steps {
@@ -78,11 +75,6 @@ object ChromeTest : BuildType({
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
   }
 
-  triggers {
-    vcs {
-    }
-  }
-
   steps {
     script {
       name = "ChromeTest"
@@ -101,6 +93,22 @@ object FirefoxTest : BuildType({
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
   }
 
+  steps {
+    script {
+      name = "FirefoxTest"
+      scriptContent = "npm run test-firefox"
+    }
+  }
+})
+
+object Something1 : BuildType({
+  name= "Something1"
+  description = "FirefoxTest"
+
+  vcs {
+    root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
+  }
+
   triggers {
     vcs {
     }
@@ -108,8 +116,8 @@ object FirefoxTest : BuildType({
 
   steps {
     script {
-      name = "FirefoxTest"
-      scriptContent = "npm run test-firefox"
+      name = "Something"
+      scriptContent = "echo Something"
     }
   }
 })
