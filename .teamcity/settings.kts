@@ -34,7 +34,6 @@ project {
     buildType(Build)
     buildType(ChromeTest)
     buildType(FirefoxTest)
-    buildType(Publish)
 
 //    since 2019.2 versions
     sequential {
@@ -43,7 +42,6 @@ project {
         buildType(ChromeTest)
         buildType(FirefoxTest)
       }
-      buildType(Publish)
     }
 }
 
@@ -53,6 +51,11 @@ object Build : BuildType({
 
     vcs {
         root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
+    }
+
+    triggers {
+        vcs {
+        }
     }
 
     steps {
@@ -75,6 +78,11 @@ object ChromeTest : BuildType({
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
   }
 
+  triggers {
+    vcs {
+    }
+  }
+
   steps {
     script {
       name = "ChromeTest"
@@ -93,22 +101,6 @@ object FirefoxTest : BuildType({
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
   }
 
-  steps {
-    script {
-      name = "FirefoxTest"
-      scriptContent = "npm run test-firefox"
-    }
-  }
-})
-
-object Publish : BuildType({
-  name= "Publish"
-  description = "Publish"
-
-  vcs {
-    root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
-  }
-
   triggers {
     vcs {
     }
@@ -116,14 +108,8 @@ object Publish : BuildType({
 
   steps {
     script {
-      name = "Publish"
-      scriptContent = "echo publish"
-    }
-  }
-
-  dependencies{
-    artifacts(ChromeTest){
-      artifactRules = "coverage.zip"
+      name = "FirefoxTest"
+      scriptContent = "npm run test-firefox"
     }
   }
 })
