@@ -55,11 +55,6 @@ object Build : BuildType({
         root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
     }
 
-    triggers {
-      vcs {
-      }
-    }
-
     steps {
       script {
         name = "Install"
@@ -67,7 +62,7 @@ object Build : BuildType({
       }
       script {
         name = "Build"
-        scriptContent = "npm run build"
+        scriptContent = "echo build"
       }
     }
 })
@@ -78,11 +73,6 @@ object ChromeTest : BuildType({
 
   vcs {
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
-  }
-
-  triggers {
-    vcs {
-    }
   }
 
   steps {
@@ -111,7 +101,7 @@ object FirefoxTest : BuildType({
   steps {
     script {
       name = "FirefoxTest"
-      scriptContent = "npm run test-firefox"
+      scriptContent = "echo test-firefox"
     }
   }
 })
