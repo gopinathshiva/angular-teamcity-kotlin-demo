@@ -34,7 +34,7 @@ project {
     buildType(Build)
     buildType(ChromeTest)
     buildType(FirefoxTest)
-    buildType(Publish)
+    buildType(Publishing)
 
 //    since 2019.2 versions
     sequential {
@@ -43,7 +43,7 @@ project {
         buildType(ChromeTest)
         buildType(FirefoxTest)
       }
-      buildType(Publish)
+      buildType(Publishing)
     }
 }
 
@@ -116,9 +116,9 @@ object FirefoxTest : BuildType({
   }
 })
 
-object Publish : BuildType({
-  name= "Publish"
-  description = "Publish"
+object Publishing : BuildType({
+  name= "Publishing"
+  description = "Publishing"
 
   vcs {
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
