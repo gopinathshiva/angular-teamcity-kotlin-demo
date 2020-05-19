@@ -34,7 +34,7 @@ project {
     buildType(Build)
     buildType(ChromeTest)
     buildType(FirefoxTest)
-    buildType(Something1)
+    buildType(Publishing)
 
 //    since 2019.2 versions
     sequential {
@@ -43,7 +43,7 @@ project {
         buildType(ChromeTest)
         buildType(FirefoxTest)
       }
-      buildType(Something1)
+      buildType(Publishing)
     }
 }
 
@@ -101,8 +101,8 @@ object FirefoxTest : BuildType({
   }
 })
 
-object Something1 : BuildType({
-  name= "Something1"
+object Publishing : BuildType({
+  name= "Publishing"
   description = "FirefoxTest"
 
   vcs {
@@ -116,8 +116,14 @@ object Something1 : BuildType({
 
   steps {
     script {
-      name = "Something"
+      name = "Publishing"
       scriptContent = "echo Something"
+    }
+  }
+
+  dependencies{
+    artifacts(ChromeTest){
+      artifactRules = "coverage.zip"
     }
   }
 })
