@@ -108,7 +108,7 @@ object FirefoxTest : BuildType({
 
 object Publishing : BuildType({
   name= "Publishing"
-  description = "FirefoxTest"
+  description = "Publishing"
 
   vcs {
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
@@ -122,7 +122,7 @@ object Publishing : BuildType({
   steps {
     script {
       name = "Publishing"
-      scriptContent = "echo Something"
+      scriptContent = "echo publishing"
     }
   }
 
