@@ -1,4 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.swabra
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
@@ -65,6 +66,10 @@ object Build : BuildType({
         scriptContent = "echo build"
       }
     }
+
+    features {
+      swabra {  }
+    }
 })
 
 object ChromeTest : BuildType({
@@ -78,7 +83,7 @@ object ChromeTest : BuildType({
   steps {
     script {
       name = "ChromeTest"
-      scriptContent = "echo successful"
+      scriptContent = "exit 1"
     }
   }
 
