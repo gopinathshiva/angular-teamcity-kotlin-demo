@@ -34,6 +34,7 @@ project {
     buildType(Build)
     buildType(ChromeTest)
     buildType(FirefoxTest)
+    buildType(Publish)
 
 //    since 2019.2 versions
     sequential {
@@ -42,6 +43,7 @@ project {
         buildType(ChromeTest)
         buildType(FirefoxTest)
       }
+      buildType(Publish)
     }
 }
 
@@ -59,13 +61,13 @@ object Build : BuildType({
     }
 
     steps {
-//      script {
-//        name = "Install"
-//        scriptContent = "npm install"
-//      }
+      script {
+        name = "Install"
+        scriptContent = "npm install"
+      }
       script {
         name = "Build"
-        scriptContent = "exit 1"
+        scriptContent = "npm run build"
       }
     }
 })
@@ -86,9 +88,11 @@ object ChromeTest : BuildType({
   steps {
     script {
       name = "ChromeTest"
-      scriptContent = "echo test successful"
+      scriptContent = "npm run test-chrome"
     }
   }
+
+  artifactRules = "coverage/my-dream-app => coverage.zip"
 })
 
 object FirefoxTest : BuildType({
@@ -107,7 +111,34 @@ object FirefoxTest : BuildType({
   steps {
     script {
       name = "FirefoxTest"
-      scriptContent = "echo test successful"
+      scriptContent = "npm run test-firefox"
+    }
+  }
+})
+
+object Publish : BuildType({
+  name= "Publish"
+  description = "Publish"
+
+  vcs {
+    root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
+  }
+
+  triggers {
+    vcs {
+    }
+  }
+
+  steps {
+    script {
+      name = "Publish"
+      scriptContent = "echo publish"
+    }
+  }
+
+  dependencies {
+    artifacts(ChromeTest){
+      artifactRules = "coverage.zip"
     }
   }
 })
