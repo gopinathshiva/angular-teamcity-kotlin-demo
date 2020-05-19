@@ -55,11 +55,6 @@ object Build : BuildType({
         root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
     }
 
-    triggers {
-        vcs {
-        }
-    }
-
     steps {
       script {
         name = "Install"
@@ -80,11 +75,6 @@ object ChromeTest : BuildType({
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
   }
 
-  triggers {
-    vcs {
-    }
-  }
-
   steps {
     script {
       name = "ChromeTest"
@@ -101,11 +91,6 @@ object FirefoxTest : BuildType({
 
   vcs {
     root(HttpsGithubComGopinathshivaAngularTeamcityKotlinDemoRefsHeadsMaster)
-  }
-
-  triggers {
-    vcs {
-    }
   }
 
   steps {
